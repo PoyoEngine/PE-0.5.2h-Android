@@ -39,7 +39,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		//I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
 		var option:Option = new Option('Optimized Mode', //Name
 			'If checked, preventd BF, GF, Dad, BG, Title Screen and Main Menu Assets\nfrom being added.', //Description
-			'lowQuality', //Save data variable name
+			'noAsset', //Save data variable name
 			'bool', //Variable type
 			false); //Default value
 		addOption(option);
