@@ -957,29 +957,35 @@ class FunkinLua {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);
-			if(image != null && image.length > 0)
+			if(image != null && image.length > 0 && !ClientPrefs)
 			{
 				leSprite.loadGraphic(Paths.image(image));
 			}
 			leSprite.antialiasing = ClientPrefs.globalAntialiasing;
+			if (!ClientPrefs.noAsset)
+			{
 			PlayState.instance.modchartSprites.set(tag, leSprite);
+			}
 			leSprite.active = true;
 		});
 		Lua_helper.add_callback(lua, "makeAnimatedLuaSprite", function(tag:String, image:String, x:Float, y:Float, ?spriteType:String = "sparrow") {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
 			var leSprite:ModchartSprite = new ModchartSprite(x, y);
-			
+			if (!ClientPrefs.noAsset)
 			loadFrames(leSprite, image, spriteType);
 			leSprite.antialiasing = ClientPrefs.globalAntialiasing;
+			if (!ClientPrefs.noAsset)
+			{
 			PlayState.instance.modchartSprites.set(tag, leSprite);
+			}
 		});
 
 		Lua_helper.add_callback(lua, "makeGraphic", function(obj:String, width:Int, height:Int, color:String) {
 			var colorNum:Int = Std.parseInt(color);
 			if(!color.startsWith('0x')) colorNum = Std.parseInt('0xff' + color);
 
-			if(PlayState.instance.modchartSprites.exists(obj)) {
+			if(!ClientPrefs.noAsset && PlayState.instance.modchartSprites.exists(obj)) {
 				PlayState.instance.modchartSprites.get(obj).makeGraphic(width, height, colorNum);
 				return;
 			}
