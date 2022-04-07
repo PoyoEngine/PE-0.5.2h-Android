@@ -420,6 +420,8 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
+    if (!CilentPrefs.noAsset)
+    {
 		switch (curStage)
 		{
 			case 'stage': //Week 1
@@ -692,19 +694,26 @@ class PlayState extends MusicBeatState
 					add(bg);
 				}
 		}
+    }
 
 		if(isPixelStage) {
 			introSoundsSuffix = '-pixel';
 		}
 
+    if (!ClientPrefs.noAsset)
+    {
 		add(gfGroup); //Needed for blammed lights
+    }
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
 
+    if (!ClientPrefs.noAsset)
+    {
 		add(dadGroup);
 		add(boyfriendGroup);
+    }
 		
 		if(curStage == 'spooky') {
 			add(halloweenWhite);
